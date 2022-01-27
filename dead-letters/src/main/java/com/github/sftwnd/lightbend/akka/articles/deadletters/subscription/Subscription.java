@@ -104,7 +104,7 @@ public class Subscription {
         }
 
         private Behavior<DeadLetter> onDeadLetter(DeadLetter deadLetter) {
-            logger.warn("Dead letter to {} has been received for message: {}", deadLetter.recipient().path().toStringWithoutAddress(), deadLetter.message());
+            logger.warn("Dead letter to '{}' has been received for message: {}", deadLetter.recipient().path().toStringWithoutAddress(), deadLetter.message());
             return Behaviors.same();
         }
 
