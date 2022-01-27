@@ -12,4 +12,23 @@ Subscribe created actor to DeadLetters
 ```java
 getContext().getSystem().eventStream().tell(new EventStream.Subscribe<>(DeadLetter.class, deadLetter));
 ```
+DeadLetter Behavior code:
+```java
+@Slf4j
+static class DeadLetterBehavior {
 
+    Behavior<DeadLetter> construct() {
+        return Behaviors.receive(DeadLetter.class)
+                .onMessage(DeadLetter.class, this::onDeadLetter)
+                .build();
+    }
+
+    private Behavior<DeadLetter> onDeadLetter(DeadLetter deadLetter) {
+        logger.warn("Dead letter to '{}' has been received for message: {}", deadLetter.recipient().path().toStringWithoutAddress(), deadLetter.message());
+        return Behaviors.same();
+    }
+
+}
+```
+
+Example code: [Subscription.java](./src/main/java/com/github/sftwnd/lightbend/akka/articles/deadletters/subscription/Subscription.java)
