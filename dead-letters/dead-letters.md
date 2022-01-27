@@ -31,5 +31,4 @@ static class DeadLetterBehavior {
 }
 ```
 
-
-Code: [Subscription.java](./src/main/java/com/github/sftwnd/lightbend/akka/articles/deadletters/subscription/Subscription.java)
+Example code: [Subscription.java](./src/main/java/com/github/sftwnd/lightbend/akka/articles/deadletters/subscription/Subscription.java)
